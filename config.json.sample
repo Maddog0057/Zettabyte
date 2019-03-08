@@ -7,5 +7,8 @@
         "useragent":"probably your email",
         "password":"you should know this one",
         "nationName":"completely self explanatory"
+  },
+  "system":{
+        "log":"</path/to/log/directory>"
   }
 }
