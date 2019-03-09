@@ -1,4 +1,4 @@
-curl -H "X-Password: DSdsRS^7M" -A "maddog0057@gmail.com" "https://www.nationstates.net/cgi-bin/api.cgi?nation=zettabyte&q=issues"
+curl -H "X-Password: DSdsRS^7M" -A "maddog0057@gmail.com" "https://www.nationstates.net/cgi-bin/api.cgi?nation=zettabyte&q=ping"
 
 -H = Header
 -A = useragent
@@ -21,8 +21,21 @@ def get_issues():
 	issue = json.loads(issue5)
 	return issue
 
+import requests
+import xmltodict
+import json
+headers = {'user-agent': "maddog0057@gmail.com", 'X-Password': "DSdsRS^7M"}
+lurl = "https://www.nationstates.net/cgi-bin/api.cgi?nation=zettabyte&q=issues"
 issues = requests.get(lurl, headers=headers)
 issues = '<root>'+issues.text+'</root>'
 issue = json.dumps(xmltodict.parse(issues, attr_prefix=""))
 issue = json.dumps(issue["root"])
 issue = json.loads(issue)
+
+with open('person.xml') as fd:
+    doc = xmltodict.parse(fd.read())
+
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(json.dumps(doc))
+
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
