@@ -3,10 +3,10 @@
     "name":"unless its different than your nation name",
     "url":"https://discordapp.com/api/webhooks/dumbcuntthinkshesgonnagetmykey"
   },
-  "nationStates":{
+  "ns":{
         "useragent":"probably your email",
-        "password":"you should know this one",
-        "nationName":"completely self explanatory"
+        "password":"X-Autologin keys",
+        "nation":"completely self explanatory"
   },
   "system":{
         "log":"</path/to/log/directory>"
