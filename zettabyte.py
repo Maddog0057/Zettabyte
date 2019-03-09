@@ -2,9 +2,14 @@ import requests
 import nationstates as ns
 import json
 import time
+import sys
+import os
+import datetime
 import xmltodict
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from random import *
+import logging
+from logging.handlers import RotatingFileHandler
 
 with open("config.json", 'r') as json_data_file:
     config = json.load(json_data_file);
@@ -28,6 +33,9 @@ class StreamToLogger(object):
       self.logger = logger
       self.log_level = log_level
       self.linebuf = ''
+   
+   def flush(self):
+      pass
 
    def write(self, buf):
       for line in buf.rstrip().splitlines():
@@ -54,7 +62,9 @@ def get_pin():
 	headers = {'user-agent': useragent, 'X-Autologin': password}
 	purl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=unread"
 	r = requests.head(url=purl, headers=headers)
+	print(r.headers)
 	pin = r.headers['X-pin']
+	print(pin)
 	return pin
 
 def get_issues():
