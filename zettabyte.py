@@ -20,12 +20,8 @@ nationName = config["ns"]["nation"]
 discordUrl = config["discord"]["url"]
 hours = 6
 
-api = ns.Nationstates(useragent)
-nation = api.nation(nationName, autologin=password)
-
 logDir = config["system"]["log"]
 logFile = logDir+config["discord"]["name"]+".log"
-
 
 class StreamToLogger(object):
 
@@ -64,11 +60,10 @@ def get_pin():
 	r = requests.head(url=purl, headers=headers)
 	print(r.headers)
 	pin = r.headers['X-pin']
-	print(pin)
+	print("New Pin: "+pin)
 	return pin
 
-def get_issues():
-	pin = get_pin()
+def get_issues(pin):
 	headers = {'user-agent': useragent, 'X-Pin': pin}
 	lurl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issues"
 	issues = requests.get(lurl, headers=headers)
@@ -101,14 +96,16 @@ def send_discord(data, iid, ch, count):
 		del webhook
 
 def choose_issues(choices):
+	api = ns.Nationstates(useragent)
+	nation = api.nation(nationName, autologin=password)
 	for key, value in choices.items():
 		print("issue is: "+str(key)+" Choice is: "+str(value))
 		response = nation.pick_issue(int(key), int(value))
 		print(response["issue"]["desc"])
 
 
-def main():
-		issue = get_issues()
+def main(pin):
+		issue = get_issues(pin)
 		issue_count = len(issue["NATION"]["ISSUES"]["ISSUE"])
 		issue_ids = {}
 		issue_ids = get_ids(issue, issue_count, issue_ids)
@@ -123,16 +120,17 @@ def main():
 		choose_issues(choices)
 
 while True:
-	issue = get_issues()
+	print("Checking For Issues")
+	pin = get_pin()
+	issue = get_issues(pin)
 	if issue["NATION"]["ISSUES"] is not None:
-		main()
+		main(pin)
 		print("Sleeping for 6 Hours")
 		time.sleep(hours*3600)
+		#print("Sleeping for 15 Seconds")
+		#time.sleep(15)
 	else:
 		print("Sleeping for 1 Hour")
 		time.sleep(3600)
-
-
-
-
-
+		#print("Sleeping for 10 Seconds")
+		#time.sleep(10)

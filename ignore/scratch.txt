@@ -1,0 +1,28 @@
+curl -H "X-Password: DSdsRS^7M" -A "maddog0057@gmail.com" "https://www.nationstates.net/cgi-bin/api.cgi?nation=zettabyte&q=issues"
+
+-H = Header
+-A = useragent
+ headers = {'user-agent': 'maddog0057@gmail.com', 'X-Password': 'DSdsRS^7M'}
+r = requests.get(lurl, headers=headers)
+r.text returns xml
+
+import json
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
+
+https://discordapp.com/api/webhooks/553038023688847394/bxLY2mFXLnCzI5u6Yl3nQe0ohmnaGR3y7CcYfXmkJ_PF33u2cKFo0g_errOl8ipRDXIy
+
+def get_issues():
+	headers = {'user-agent': "maddog0057@gmail.com", 'X-Password': "DSdsRS^7M"}
+	lurl = "https://www.nationstates.net/cgi-bin/api.cgi?nation=zettabyte&q=issues"
+	issues = requests.get(lurl, headers=headers)
+	issues = xmltodict.parse(issues.text)
+	issue5 = json.dumps(issues)
+	issue = json.loads(issue5)
+	return issue
+
+issues = requests.get(lurl, headers=headers)
+issues = '<root>'+issues.text+'</root>'
+issue = json.dumps(xmltodict.parse(issues, attr_prefix=""))
+issue = json.dumps(issue["root"])
+issue = json.loads(issue)
