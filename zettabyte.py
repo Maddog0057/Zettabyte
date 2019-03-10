@@ -131,7 +131,7 @@ while True:
 	print("Checking For Issues")
 	pin = get_pin()
 	iss_ct = get_issue_count(pin)
-	print("Issue Count is: "+iss_ct)
+	print("Issue Count is: "+str(iss_ct))
 	if int(iss_ct) > 1:
 		main(pin)
 		print("Sleeping for 6 Hours")
