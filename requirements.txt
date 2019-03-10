@@ -1,0 +1,4 @@
+requests==2.18.4
+nationstates==2.0.0.1
+discord_webhook==0.4.1
+xmltodict==0.11.0

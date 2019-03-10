@@ -63,6 +63,14 @@ def get_pin():
 	print("New Pin: "+pin)
 	return pin
 
+def get_issue_count(pin):
+	headers = {'user-agent': useragent, 'X-Pin': pin}
+	cturl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issuesummary"
+	issum = requests.get(cturl, headers=headers)
+	issum = xmltodict.parse(str(issum.text))
+	iss_ct = len(issum['NATION']['ISSUESUMMARY'])
+	return iss_ct
+
 def get_issues(pin):
 	headers = {'user-agent': useragent, 'X-Pin': pin}
 	lurl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issues"
@@ -108,7 +116,6 @@ def choose_issues(choices):
 def main(pin):
 		issue = get_issues(pin)
 		issue_count = len(issue["NATION"]["ISSUES"]["ISSUE"])
-		issue_ids = {}
 		issue_ids = get_ids(issue, issue_count)
 		choices = {}
 		count = 0
@@ -123,8 +130,8 @@ def main(pin):
 while True:
 	print("Checking For Issues")
 	pin = get_pin()
-	issue = get_issues(pin)
-	if issue["NATION"]["ISSUES"] is not None:
+	iss_ct = get_issue_count(pin)
+	if int(iss_ct) > 1:
 		main(pin)
 		print("Sleeping for 6 Hours")
 		time.sleep(hours*3600)
