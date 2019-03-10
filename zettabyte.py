@@ -70,8 +70,9 @@ def get_issues(pin):
 	issue = xmltodict.parse(str(issues.text))
 	return issue
 
-def get_ids(issue, iss_count, ids):
+def get_ids(issue, iss_count):
 	count = 0
+	ids = {}
 	while True:
 		iss_id = issue["NATION"]["ISSUES"]["ISSUE"][count]["@id"]
 		resp_count = len(issue["NATION"]["ISSUES"]["ISSUE"][count]["OPTION"])
@@ -108,7 +109,7 @@ def main(pin):
 		issue = get_issues(pin)
 		issue_count = len(issue["NATION"]["ISSUES"]["ISSUE"])
 		issue_ids = {}
-		issue_ids = get_ids(issue, issue_count, issue_ids)
+		issue_ids = get_ids(issue, issue_count)
 		choices = {}
 		count = 0
 		for key, value in issue_ids.items():
