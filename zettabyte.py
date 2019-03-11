@@ -22,7 +22,7 @@ hours = 6
 
 logDir = config["system"]["log"]
 logFile = logDir+config["discord"]["name"]+".log"
-"""
+
 class StreamToLogger(object):
 
    def __init__(self, logger, log_level=logging.INFO):
@@ -53,7 +53,7 @@ sys.stdout = sl
 stderr_logger = logging.getLogger('STDERR')
 sl = StreamToLogger(stderr_logger, logging.ERROR)
 sys.stderr = sl
-"""
+
 def get_pin():
 	headers = {'user-agent': useragent, 'X-Autologin': password}
 	purl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=unread"
@@ -68,7 +68,7 @@ def get_issue_count(pin):
 	cturl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issuesummary"
 	issum = requests.get(cturl, headers=headers)
 	issum = xmltodict.parse(str(issum.text))
-	iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUES'])
+	iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUE'])
 	return iss_ct
 
 def get_issues(pin):
@@ -107,9 +107,10 @@ def send_discord(data, iid, ch, count):
 def choose_issues(choices):
 	api = ns.Nationstates(useragent)
 	nation = api.nation(nationName, autologin=password)
+	print(choices)
 	for key, value in choices.items():
 		print("issue is: "+str(key)+" Choice is: "+str(value))
-		response = nation.pick_issue(int(key), int(value))
+		response = nation.pick_issue(key, value)
 		print(response["issue"]["desc"])
 
 
