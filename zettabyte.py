@@ -68,7 +68,7 @@ def get_issue_count(pin):
 	cturl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issuesummary"
 	issum = requests.get(cturl, headers=headers)
 	issum = xmltodict.parse(str(issum.text))
-	iss_ct = len(issum['NATION']['ISSUESUMMARY'])
+	iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUE'])
 	return iss_ct
 
 def get_issues(pin):
@@ -132,7 +132,7 @@ while True:
 	pin = get_pin()
 	iss_ct = get_issue_count(pin)
 	print("Issue Count is: "+str(iss_ct))
-	if int(iss_ct) > 1:
+	if int(iss_ct) < 6:
 		main(pin)
 		print("Sleeping for 6 Hours")
 		time.sleep(hours*3600)
