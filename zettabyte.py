@@ -68,7 +68,10 @@ def get_issue_count(pin):
 	cturl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issuesummary"
 	issum = requests.get(cturl, headers=headers)
 	issum = xmltodict.parse(str(issum.text))
-	iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUE'])
+	if issum['NATION']['ISSUESUMMARY'] is not None:
+		iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUE'])
+	else:
+		iss_ct = 0
 	return iss_ct
 
 def get_issues(pin):
