@@ -71,7 +71,7 @@ def get_issue_count(pin):
 	if issum['NATION']['ISSUESUMMARY'] is not None:
 		iss_ct = len(issum['NATION']['ISSUESUMMARY']['ISSUE'])
 	else:
-		iss_ct = 0
+		iss_ct = 8
 	return iss_ct
 
 def get_issues(pin):
