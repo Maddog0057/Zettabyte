@@ -1,0 +1,5 @@
+config.json
+logs/
+ignore/
+*.save
+.vscode/
