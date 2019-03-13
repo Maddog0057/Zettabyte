@@ -23,7 +23,7 @@ Find youself a discord server, I don't care how, make one, steal one, gain the t
 This is where things start to get tricky, so I'm going to make a few assumptions:
 
 1. You have a working knowlege of basic Linux commands (I'm not making this distro specific)
-2. You know when I put things in <brackets> they don't stay in brackets e.g. Password:"<passowrd>"" means replace <password> with your passowrd, such as Password:"Password123" (If you're panicking right now that your password is part of the documentation, yes, I know your passoword, go change it)
+2. You know when I put things in <brackets> they don't stay in brackets e.g. Password:"\<passowrd>" means replace \<password> with your password, such as Password:"Password123" (If you're panicking right now that your password is part of the documentation, yes, I know your passoword, go change it)
 3. You have a working knowlege of basic Linux commands (I don't hold hands)
 4. Some of these commands will need to be run as root (sudo) I trust you'll know which ones and I accept no responsability for what you muck up in the process.
 
