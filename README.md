@@ -2,7 +2,7 @@
 ## An Autonomous Country in NationStates
 
 ### WHY?
-Well, you see, I was bored, and Nation States only gives you an issue every ~1.5 hours, so I figured what would happen if I basically just chose a random response to every issue? How would the state turn out? Horrible dictatorship? Paradise? Socialism? (nah, socialism doesn't work) Then i figued, that's a lot of work... Why don't I just write a bot to do it instead? and after lots of procrastinating (mainly making flags and coming up with stupid robot-related names... damn Mechadonia) I drew up this bot in python.
+Well, you see, I was bored, and Nation States only gives you an issue every ~1.5 hours, so I figured what would happen if I basically just chose a random response to every issue? How would the state turn out? Horrible dictatorship? Paradise? Socialism? (nah, socialism doesn't work) Then I figued, that's a lot of work... Why don't I just write a bot to do it instead? and after lots of procrastinating (mainly making flags and coming up with stupid robot-related names... damn Mechadonia) I drew up this bot in python.
 
 ### Requirements
 * Some sort of linux machine that supports Python 3.x, Sorry Windows (Not Sorry)
