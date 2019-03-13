@@ -35,7 +35,7 @@ Great! Now that we've gotten that out of the way, lets begin.
 3. Open config.json in your favorite text editor (no emacs isn't acceptable) and start filling it in section by section
 4. Under discord, name should be the name you gave your discord webhook, and url is the link is the one you saved earlier (You haven't lost it already have you)
 5. Under ns, useragent can be literally anything, nation states gives more info about this [here](https://www.nationstates.net/pages/api.html#terms), nation is your nation name
-6. ns Passowrd is probably the trickiest to get, it needs to be a token given to you by nation states in an effort to obfuscate your password (I could have just used your passoword in plan text, but I feed on the extranious effort of others), you can get the token using the following command:
+6. ns password is probably the trickiest to get, it needs to be a token given to you by nation states in an effort to obfuscate your password (I could have just used your password in plan text, but I feed on the extranious effort of others), you can get the token using the following command:
 	```curl -H "X-Password: <Your actual password>" -A "<useragent>" "https://www.nationstates.net/cgi-bin/api.cgi?nation=<nationname>&q=unread" -i |grep x-autologin |cut -d":" -f2```
 7. In the system section you only need the location of whatever directory you want to store your logs (I don't care where it is as long as the user that you run the bot as has access to it) e.x.:
 	```/opt/Zettabyte/logs/```
@@ -46,20 +46,20 @@ Great! Now that we've gotten that out of the way, lets begin.
 
 #### Daemon Setup 
 ##### For those who wish to put in more than 10% effort
-1. Start with zettabyte.service file, rename it whatever you want as long as it ends in service, it what you're gonna have to type to start and stop the bot so make it easy
+1. Start with zettabyte.service file, rename it whatever you want as long as it ends in .service, it's what you're gonna have to type to start and stop the bot so make it easy.
 2. Open the file with your favorite text editor (Seriously, emacs is a no)
 3. Most of this file is pretty straight forward, Description is whatever you want it to be, exec start should be the location of your python binary (run ```which python3``` for the path) as well as the location of the zettabyte.py file (or whatever you renamed it to, yes, you can do that)
 4. Working directory should be the same as the location of zettabyte.py, excluding "/zettabyte.py"
-5. User and Group is based on your setup, I'd advise creating a new user with /sbin/nologin as the shell (Google it if you're staring at the screen like you're simple, see the "no handholding" policy) and setting both User and Group to the user you just made. Otherwise you can run them as your user, or root (I don't recommend it, nor will I accept any responsabity if you do, I'm just laying out your options).
+5. User and Group is based on your setup, I'd advise creating a new user with /sbin/nologin as the shell (Google it if you're staring at the screen like you're simple, see the "no hand-holding" policy) and set both User and Group to the user you just made. Otherwise you can run them as your user, or root (I don't recommend it, nor will I accept any responsabity if you do, I'm just laying out your options).
 6. Make sure whatever User you choose to run the bot as has complete permission over the directory where the zettabyte.py and config files live, as well as the logs folder, and has access to the python3 binary. ```chown -R <User>:<Group> /path/to/zettabyte/files```
 7. Anything I didn't mention about this file is best not to touch (I probably don't even know what it does)
-8. You now want to move this file to wherever your service files are stored (Most people use ```/usr/lib/systemd/system/``` if you don't I won't judge)
+8. You now want to move this file to wherever your service files are stored (Most people use ```/usr/lib/systemd/system/``` if you don't, I won't judge)
 9. Run ```systemctl daemon-reload``` to install the service and ```systemctl start <file.service>``` to start the Bot
 10. If you want the bot to run on startup ```systemctl enable <file.service>```
 
 #### Footnotes
 ##### Read them or don't I don't care
-Some say my documentation sytle is offensive, I really couldn't care less what you think, but if you wanna let me know (I won't read it):
+Some say my documentation style is offensive, I really couldn't care less what you think, but if you wanna let me know (I won't read it):
 
 Send me a Telegram [Invernes](https://www.nationstates.net/nation=invernes)
 Discord: [Maddog](https://discordapp.com/users/maddog#6554)
