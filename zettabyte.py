@@ -79,14 +79,15 @@ def get_issues(pin):
 	lurl = "https://www.nationstates.net/cgi-bin/api.cgi?nation="+nationName+"&q=issues"
 	issues = requests.get(lurl, headers=headers)
 	issue = xmltodict.parse(str(issues.text))
+	issue = issue["NATION"]["ISSUES"]["ISSUE"]
 	return issue
 
 def get_ids(issue, iss_count):
 	count = 0
 	ids = {}
 	while True:
-		iss_id = issue["NATION"]["ISSUES"]["ISSUE"][count]["@id"]
-		resp_count = len(issue["NATION"]["ISSUES"]["ISSUE"][count]["OPTION"])
+		iss_id = issue[count]["@id"]
+		resp_count = len(issue[count]["OPTION"])
 		ids.update({iss_id:resp_count})
 		count = int(count)+1
 		if (int(count) == int(iss_count)):
@@ -96,10 +97,10 @@ def get_ids(issue, iss_count):
 			True
 
 def send_discord(data, iid, ch, count):
-	if int(data["NATION"]["ISSUES"]["ISSUE"][count]["@id"]) == int(iid):
-		iss = str(data["NATION"]["ISSUES"]["ISSUE"][count]["TEXT"])
-		title = str(data["NATION"]["ISSUES"]["ISSUE"][count]["TITLE"])
-		ans = str(data["NATION"]["ISSUES"]["ISSUE"][count]["OPTION"][ch]["#text"])
+	if int(data[count]["@id"]) == int(iid):
+		iss = str(data[count]["TEXT"])
+		title = str(data[count]["TITLE"])
+		ans = str(data[count]["OPTION"][ch]["#text"])
 		embed = DiscordEmbed(title=title, description=iss, color=0e9319)
 		embed.add_embed_field(name="Zettabyte Chose (Option "+str(ch)+"): ", value=ans)
 		webhook = DiscordWebhook(url=discordUrl)
@@ -119,7 +120,7 @@ def choose_issues(choices):
 
 def main(pin):
 		issue = get_issues(pin)
-		issue_count = len(issue["NATION"]["ISSUES"]["ISSUE"])
+		issue_count = get_issue_count(pin)
 		issue_ids = get_ids(issue, issue_count)
 		choices = {}
 		count = 0
