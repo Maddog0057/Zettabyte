@@ -7,12 +7,12 @@ import os
 import datetime
 import xmltodict
 from discord_webhook import DiscordWebhook, DiscordEmbed
-from random import *
+from random import randint
 import logging
 from logging.handlers import RotatingFileHandler
 
 with open("config.json", 'r') as json_data_file:
-    config = json.load(json_data_file);
+    config = json.load(json_data_file)
 
 useragent = config["ns"]["useragent"]
 password = config["ns"]["password"]
