@@ -119,6 +119,7 @@ def choose_issues(choices):
 
 
 def main(pin):
+		del issue
 		issue = get_issues(pin)
 		issue_count = get_issue_count(pin)
 		issue_ids = get_ids(issue, issue_count)
