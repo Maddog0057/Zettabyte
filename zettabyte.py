@@ -18,7 +18,7 @@ useragent = config["ns"]["useragent"]
 password = config["ns"]["password"]
 nationName = config["ns"]["nation"]
 discordUrl = config["discord"]["url"]
-hours = 6
+hours = 8
 
 logDir = config["system"]["log"]
 logFile = logDir+config["discord"]["name"]+".log"
@@ -146,7 +146,7 @@ while True:
 		#print("Sleeping for 15 Seconds")
 		#time.sleep(15)
 	else:
-		print("Sleeping for 1 Hour")
-		time.sleep(3600)
+		print("Sleeping for 3 Hours")
+		time.sleep(10800)
 		#print("Sleeping for 10 Seconds")
 		#time.sleep(10)
