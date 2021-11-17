@@ -86,7 +86,7 @@ def get_ids(issue, iss_count):
 	count = 0
 	ids = {}
 	print(issue)
-	print ("Issue 0: "+issue[0])
+	#print ("Issue 0: "+issue[0])
 	while True:
 		iss_id = issue[count]["@id"]
 		resp_count = len(issue[count]["OPTION"])
